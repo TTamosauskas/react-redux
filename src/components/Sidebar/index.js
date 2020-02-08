@@ -12,11 +12,11 @@ return {
 
 const Sidebar = ({modules, dispatch}) => (
   <aside>
-{ modules.map(modules => (
+{ modules.map(module => (
 <div key={module.id}>
-  <strong>{modules.title}</strong>
+  <strong>{module.titlemodule}</strong>
     <ul>
-      {modules.lessons.map(lesson => (
+      {module.lessons.map(lesson => (
 
         <li key={lesson.id}>{lesson.title}
      <button onClick={() => dispatch(setLesson(module, lesson))}>Selecionar</button>
@@ -31,4 +31,4 @@ const Sidebar = ({modules, dispatch}) => (
 );
 
 
-export default connect(state => ({modules:state.modules }))(Sidebar);
+export default connect(state => ({modules:state.modules}))(Sidebar);

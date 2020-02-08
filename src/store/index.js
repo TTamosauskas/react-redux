@@ -1,20 +1,36 @@
 import {createStore} from 'redux';
 
-function reducer(){
-return {
-  activeLesson: null,
-  activeModule: null,
-  modules: [
-  {id:1, title:"Modulo um", lessons: [
-    {id: 1, title: "Primeira aula" },
-    {id: 2, title: "Segunda aula" },
-  ]},
-  {id:2, title:"Modulo dois", lessons:[
-    {id: 3, title: "Terceira aula" },
-    {id: 4, title: "Quarta aula" },
+const INITIAL_STATE = {
+  activeLesson: {},
+  activeModule: {},
+    modules: [
+    {id:1, 
+      titlemodule:"Introdução ao assunto", 
+      lessons: [
+        {id: 1, title: "- Primeira aula" },
+        {id: 2, title: "- Segunda aula" },
+    ]},
+    {id:2,
+       titlemodule:"Exercicios Práticos", 
+       lessons:[
+         {id: 1, title: "- Terceira aula" },
+        {id: 2, title: "- Quarta aula" },
+    ]}
+  ]
+}
 
-  ]}
-]}
+function reducer(state = INITIAL_STATE, action){
+ console.log(action);
+  if(action.type === "SET_LESSON") {
+   return {
+  ...state,
+  activeLesson: action.lesson,
+  activeModule: action.module
+ };
+
+  }
+
+return state;
 
 
 }
