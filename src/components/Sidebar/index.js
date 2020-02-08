@@ -2,7 +2,15 @@ import React from 'react';
 
 import {connect} from "react-redux";
 
-const Sidebar = ({modules}) => (
+function setLesson(module, lesson){
+return {
+  type:'SET_LESSON',
+  module,
+  lesson,
+}
+}
+
+const Sidebar = ({modules, dispatch}) => (
   <aside>
 { modules.map(modules => (
 <div key={module.id}>
@@ -10,9 +18,11 @@ const Sidebar = ({modules}) => (
     <ul>
       {modules.lessons.map(lesson => (
 
-        <li key={lesson.id}>{lesson.title}</li>
-        
+        <li key={lesson.id}>{lesson.title}
+     <button onClick={() => dispatch(setLesson(module, lesson))}>Selecionar</button>
+     </li>
       ))}
+    
     </ul>
 </div>
 
