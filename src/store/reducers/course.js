@@ -1,3 +1,6 @@
+// REDUX: Neste arquivo se define o estado inicial do reducer, e sua action
+
+// REDUX: Estado inicial do curso
 
 const INITIAL_STATE = {
   activeLesson: {},
@@ -17,6 +20,8 @@ const INITIAL_STATE = {
     ]}
   ]
 }
+
+// Função de id UNICO, no caso SET_LESSON (ver pasta actions)
 
 export default function course(state = INITIAL_STATE, action){
  console.log(action);
