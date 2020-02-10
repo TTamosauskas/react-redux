@@ -2,24 +2,19 @@ import React from 'react';
 
 import {connect} from "react-redux";
 
-function setLesson(module, lesson){
-return {
-  type:'SET_LESSON',
-  module,
-  lesson,
-}
-}
+import { bindActionCreators } from "redux";
 
-const Sidebar = ({modules, dispatch}) => (
+import * as CourseActions from "../../store/actions/course";
+
+const Sidebar = ({modules, setLesson}) => (
   <aside>
 { modules.map(module => (
 <div key={module.id}>
   <strong>{module.titlemodule}</strong>
     <ul>
       {module.lessons.map(lesson => (
-
         <li key={lesson.id}>{lesson.title}
-     <button onClick={() => dispatch(setLesson(module, lesson))}>Selecionar</button>
+     <button onClick={() => setLesson(module, lesson)}>Selecionar</button>
      </li>
       ))}
     
@@ -30,5 +25,12 @@ const Sidebar = ({modules, dispatch}) => (
   </aside>
 );
 
+const mapStateToProps = state => ({
+  modules: state.course.modules
+});
 
-export default connect(state => ({modules:state.course.modules}))(Sidebar);
+const mapDispatchToProps = dispatch =>  bindActionCreators(CourseActions, dispatch);
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
